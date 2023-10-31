@@ -3,7 +3,7 @@ import { ParkedVehicle } from '@/interfaces'
 import React from 'react'
 
 type ParkingStatusTableProps ={
-    parkedVehicles: ParkedVehicle[]
+    parkedVehicles: ParkedVehicle[] | null
 }
 
 

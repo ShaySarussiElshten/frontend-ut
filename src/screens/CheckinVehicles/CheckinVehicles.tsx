@@ -1,7 +1,6 @@
 import React, { useEffect,useState,ChangeEvent, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import useDelayedLoading from '@/hooks/useDelayedLoading';
 import { AppDispatch, RootState } from '@/store/store';
 import { Container, TextField, MenuItem, Button, Typography } from '@mui/material';
 import { executeVehicleCheckIn, resetCheckinVehicleState } from '@/store/vehicle/checkinVehiclesSlice';
@@ -18,9 +17,7 @@ const ticketTypes = ['Value', 'VIP', 'Regular'];
 const GroupParkedVehicles = () => {
   const dispatch = useDispatch<AppDispatch>();
   const checkinVehicle = useSelector((state: RootState) => state.checkinVehicle.data);
-  const isLoading = useSelector((state: RootState) => state.checkinVehicle.loading);
-  const isError = useSelector((state: RootState) => state.checkinVehicle.error);
-  const displayLoading = useDelayedLoading(isLoading,500);
+
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState<VehicleCheckIn>({
     name: '',
@@ -38,7 +35,7 @@ const GroupParkedVehicles = () => {
   const [errors, setErrors] = useState<Partial<VehicleCheckIn>>({});
 
   const validate = (fieldValues: Partial<VehicleCheckIn>) => {
-    let temp = { ...errors };
+    const temp = { ...errors };
     if ('height' in fieldValues)
       temp.height = fieldValues.height && Number(fieldValues.height) > 0 ? "" : "Height must be above 0";
     if ('width' in fieldValues)
@@ -62,9 +59,7 @@ const GroupParkedVehicles = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (isValid(errors)) {
-      console.log(formValues)
       dispatch(executeVehicleCheckIn(formValues));
-      // Add your submit logic here
     }
   };
 
@@ -104,7 +99,7 @@ const GroupParkedVehicles = () => {
       message={snackbarMessage}
       severity="error" 
     />
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" sx={{ paddingBottom:'30px' }}>
       <Typography component="h1" variant="h5" className="text-gray-300">
         Vehicle Form
       </Typography>

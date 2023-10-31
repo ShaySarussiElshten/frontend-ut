@@ -17,7 +17,6 @@ export const executeVehicleCheckIn = createAsyncThunk<MassageCheckInResponse, Ve
     VehicleActionType.VEHICLE_CHECK_IN,
     async (formData) => {
       const response = await axios.post(VEHICLE_CHECK_IN, formData);
-      console.log(response.data);
       return response.data;
     }
   );

@@ -16,7 +16,6 @@ export const executeVehicleCheckOut = createAsyncThunk<MassageParkedVehicleRespo
         'Content-Type': 'application/json',
       },
     });
-    console.log(response.data)
     return response.data;
   }
 );
@@ -25,7 +24,7 @@ const checkoutVehiclesSlice = createSlice({
   name: 'checkOutVehicles',
   initialState,
   reducers: {
-    resetCheckoutVehicleState: (state) => {
+    resetCheckoutVehicleState: () => {
       return initialState;
     },
   },

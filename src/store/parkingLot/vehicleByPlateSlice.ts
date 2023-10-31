@@ -14,7 +14,6 @@ export const fetchVehicleByPlate = createAsyncThunk<MassageParkedVehicleResponse
   ParkingLotActionType.PARKING_VEHICLE_BY_PLATE,
   async ({plateId}) => {
     const response = await axios.get(`${VEHICLE_BY_PLATE}/${plateId}`);
-    console.log(response.data)
     return response.data;
   }
 );

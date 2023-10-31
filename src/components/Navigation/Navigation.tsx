@@ -1,15 +1,14 @@
 import React, {useState ,Fragment} from 'react'
 import {
     ChartBarSquareIcon,
-    Cog6ToothIcon,
     FolderIcon,
     GlobeAltIcon,
     ServerIcon,
     SignalIcon,
     XMarkIcon,
   } from '@heroicons/react/24/outline'
-  import { Dialog, Menu, Transition } from '@headlessui/react'
-  import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+  import { Dialog, Transition } from '@headlessui/react'
+  import { Bars3Icon } from '@heroicons/react/20/solid'
   import { useLocation,Link } from 'react-router-dom';
 
 const navigation = [
@@ -21,13 +20,13 @@ const navigation = [
   ]
 
 
-function classNames(...classes:any[]) {
+function classNames(...classes:string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
 const Navigation = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  let {pathname} = useLocation();
+  const {pathname} = useLocation();
  
 
 

@@ -1,6 +1,5 @@
-import React, { useEffect,useState, ChangeEvent  } from 'react';
+import React, { useState, ChangeEvent  } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import useDelayedLoading from '@/hooks/useDelayedLoading';
 import { AppDispatch, RootState } from '@/store/store';
 import Box from '@mui/material/Box';
 import { fetchVehicleByPlate } from '@/store/parkingLot/vehicleByPlateSlice';
@@ -16,9 +15,6 @@ import { CardVehicleInfo } from '@/components/CardVehicleInfo';
 const VehicleByPlate = () => {
   const dispatch = useDispatch<AppDispatch>();
   const vehicleByPlate = useSelector((state: RootState) => state.vehicleByPlate.data);
-  const isLoading = useSelector((state: RootState) => state.vehicleByPlate.loading);
-  const isError = useSelector((state: RootState) => state.vehicleByPlate.error);
-  const displayLoading = useDelayedLoading(isLoading,500);
   const [inputValue, setInputValue] = useState(vehicleByPlate && vehicleByPlate.success ? vehicleByPlate.data.licensePlateId :'');
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -28,19 +24,6 @@ const VehicleByPlate = () => {
   const handleButtonClick = () => {
     dispatch(fetchVehicleByPlate({plateId:inputValue}))
   };
-
-  console.log(vehicleByPlate)
-
- 
- 
-
-  // if(isError){
-  //   return (
-  //    <NotFoundPage>
-  //       <span>Users not found</span>
-  //    </NotFoundPage>
-  //   )
-  // }
 
 
   return (    

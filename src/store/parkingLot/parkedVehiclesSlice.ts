@@ -12,7 +12,6 @@ export const fetchParkedVehicles = createAsyncThunk<ParkedVehicle[]>(
   ParkingLotActionType.PARKING_STATUS,
   async () => {
     const response = await axios.get(PARKING_STATUS);
-    console.log(response.data)
     return response.data;
   }
 );

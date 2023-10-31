@@ -1,4 +1,4 @@
-import { GROUP_PARKED_VEHICLES, PARKING_STATUS } from '@/constants';
+import { GROUP_PARKED_VEHICLES } from '@/constants';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { ParkingLotActionType } from './parkingLotActionType';
@@ -11,7 +11,6 @@ export const fetchGroupParked = createAsyncThunk<ParkedVehicle[],{ groupId: stri
   ParkingLotActionType.PARKING_GROUP,
   async ({groupId}) => {
     const response = await axios.get(`${GROUP_PARKED_VEHICLES}?ticketType=${groupId}`);
-    console.log(response.data)
     return response.data;
   }
 );
